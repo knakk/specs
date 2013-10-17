@@ -29,7 +29,7 @@ func (s *Specs) Expect(expected, actual interface{}, msg ...string) {
 		if len(msg) > 0 {
 			s.t.Error(msg[0])
 		} else {
-			s.t.Errorf("expected %+v to be %+v", actual, expected)
+			s.t.Errorf("expected \"%+v\" to be \"%+v\"", actual, expected)
 		}
 	}
 }
@@ -38,7 +38,7 @@ func (s *Specs) Expect(expected, actual interface{}, msg ...string) {
 func (s *Specs) ExpectMatches(expected, actual string, msg ...string) {
 	r := regexp.MustCompile(expected)
 	if !r.MatchString(actual) {
-		s.t.Errorf("expected %+v to be a substring of %+v", expected, actual)
+		s.t.Errorf("expected \"%+v\" to be a substring of \"%+v\"", expected, actual)
 	}
 }
 
@@ -46,7 +46,7 @@ func (s *Specs) ExpectMatches(expected, actual string, msg ...string) {
 func (s *Specs) ExpectNotMatches(expected, actual string, msg ...string) {
 	r := regexp.MustCompile(expected)
 	if r.MatchString(actual) {
-		s.t.Errorf("expected %+v not to be a substring of %+v", expected, actual)
+		s.t.Errorf("expected \"%+v\" not to be a substring of \"%+v\"", expected, actual)
 	}
 }
 
@@ -56,7 +56,7 @@ func (s *Specs) ExpectNot(expected, actual interface{}, msg ...string) {
 		if len(msg) > 0 {
 			s.t.Error(msg[0])
 		} else {
-			s.t.Errorf("expected %+v not to be found in %+v", actual, expected)
+			s.t.Errorf("expected \"%+v\" not to be found in \"%+v\"", actual, expected)
 		}
 	}
 }
@@ -69,7 +69,7 @@ func (s *Specs) ExpectNil(actual interface{}, msg ...string) {
 	if len(msg) > 0 {
 		s.t.Error(msg[0])
 	} else {
-		s.t.Errorf("expected %+v to be <nil>", actual)
+		s.t.Errorf("expected \"%+v\" to be <nil>", actual)
 	}
 }
 
@@ -81,7 +81,7 @@ func (s *Specs) ExpectNilFatal(actual interface{}, msg ...string) {
 	if len(msg) > 0 {
 		s.t.Fatal(msg[0])
 	} else {
-		s.t.Fatalf("expected %+v to be <nil>", actual)
+		s.t.Fatalf("expected \"%+v\" to be <nil>", actual)
 	}
 }
 
@@ -93,7 +93,7 @@ func (s *Specs) ExpectNotNil(actual interface{}, msg ...string) {
 	if len(msg) > 0 {
 		s.t.Error(msg[0])
 	} else {
-		s.t.Errorf("expected %+v to be not <nil>", actual)
+		s.t.Errorf("expected \"%+v\" to be not <nil>", actual)
 	}
 }
 
@@ -108,7 +108,7 @@ func (s *Specs) ErrExpect(err, expected, actual interface{}, msg ...string) {
 		}
 	}
 	if actual != expected {
-		s.t.Errorf("expected %+v to be %+v", actual, expected)
+		s.t.Errorf("expected \"%+v\" to be \"%+v\"", actual, expected)
 	}
 }
 
@@ -117,7 +117,7 @@ func (s *Specs) ErrExpect(err, expected, actual interface{}, msg ...string) {
 func (s *Specs) ExpectAll(tests []Spec) {
 	for _, t := range tests {
 		if t.actual != t.expected {
-			s.t.Errorf("expected %+v to be %+v", t.actual, t.expected)
+			s.t.Errorf("expected \"%+v\" to be \"%+v\"", t.actual, t.expected)
 		}
 	}
 }
