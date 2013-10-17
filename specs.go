@@ -42,13 +42,21 @@ func (s *Specs) ExpectMatches(expected, actual string, msg ...string) {
 	}
 }
 
+// ExpectNotMatches checks if the string actual not has a match in expected.
+func (s *Specs) ExpectNotMatches(expected, actual string, msg ...string) {
+	r := regexp.MustCompile(expected)
+	if r.MatchString(actual) {
+		s.t.Errorf("expected %+v not to be a substring of %+v", expected, actual)
+	}
+}
+
 // ExpectNot checks for inequality between expected and actual.
 func (s *Specs) ExpectNot(expected, actual interface{}, msg ...string) {
 	if actual == expected {
 		if len(msg) > 0 {
 			s.t.Error(msg[0])
 		} else {
-			s.t.Errorf("expected %+v not to be %+v", actual, expected)
+			s.t.Errorf("expected %+v not to be found in %+v", actual, expected)
 		}
 	}
 }
