@@ -1,6 +1,9 @@
 package specs
 
-import "testing"
+import (
+	"regexp"
+	"testing"
+)
 
 // Specs is a wrapper for *testing.T
 type Specs struct {
@@ -28,6 +31,14 @@ func (s *Specs) Expect(expected, actual interface{}, msg ...string) {
 		} else {
 			s.t.Errorf("expected %+v to be %+v", actual, expected)
 		}
+	}
+}
+
+// ExpectMatches checks if the string actual has a match in expected.
+func (s *Specs) ExpectMatches(expected, actual string, msg ...string) {
+	r := regexp.MustCompile(expected)
+	if !r.MatchString(actual) {
+		s.t.Errorf("expected %+v to be a substring of %+v", expected, actual)
 	}
 }
 
