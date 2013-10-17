@@ -14,8 +14,8 @@ type Specs struct {
 //
 // ExpectAll takes []Spec as input.
 type Spec struct {
-	expected interface{}
-	actual   interface{}
+	Expected interface{}
+	Actual   interface{}
 }
 
 // New initializes the specs by storing a reference to the *testing.T.
@@ -116,8 +116,8 @@ func (s *Specs) ErrExpect(err, expected, actual interface{}, msg ...string) {
 // Spec.actual is equal to Spec.expected.
 func (s *Specs) ExpectAll(tests []Spec) {
 	for _, t := range tests {
-		if t.actual != t.expected {
-			s.t.Errorf("expected \"%+v\" to be \"%+v\"", t.actual, t.expected)
+		if t.Actual != t.Expected {
+			s.t.Errorf("expected \"%+v\" to be \"%+v\"", t.Actual, t.Expected)
 		}
 	}
 }
