@@ -24,7 +24,7 @@ func New(t *testing.T) *Specs {
 }
 
 // Expect checks for equality between expected and actual.
-func (s *Specs) Expect(expected interface{}, actual, msg ...string) {
+func (s *Specs) Expect(expected, actual interface{}, msg ...string) {
 	if actual != expected {
 		if len(msg) > 0 {
 			s.t.Error(msg[0])
